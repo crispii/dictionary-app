@@ -219,10 +219,11 @@ const displayError = (message: string): void => {
 };
 
 
-const inputWord = document.getElementById("input");
-const submitBtn = document.getElementById("submit");
+const inputWord = document.getElementById("input") as HTMLInputElement;
+const submitBtn = document.getElementById("submit") as HTMLButtonElement;
+
 submitBtn.addEventListener("click", async () => {
-  const word = inputWord.value.trim();
+  const word: string = inputWord.value.trim();
   if (!word) return;
 
   try {
@@ -235,3 +236,4 @@ submitBtn.addEventListener("click", async () => {
     displayError("Could not find the word. Please try another.");
   }
 });
+
