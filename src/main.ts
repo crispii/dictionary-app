@@ -28,13 +28,16 @@ interface DictionaryAPIResponse {
 
 const dictionaryAPI = "https://api.dictionaryapi.dev/api/v2/entries/en_US/";
 
-const searchWord = async (word) => {
+// Fetch data from the API
+const searchWord = async (word: string): Promise<DictionaryAPIResponse[]> => {
   const response = await fetch(`${dictionaryAPI}${word}`);
   if (!response.ok) {
     throw new Error(`Word not found (status ${response.status})`);
   }
-  return response.json();
+  const data: DictionaryAPIResponse[] = await response.json();
+  return data;
 };
+
 
 const extractFromEntry = (data, key) => {
   if (data && Array.isArray(data)) {
